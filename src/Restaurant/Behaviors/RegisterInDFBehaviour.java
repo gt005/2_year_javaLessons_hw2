@@ -9,7 +9,7 @@ public class RegisterInDFBehaviour extends OneShotBehaviour {
     private final String serviceType;
     private final String ownership;
 
-    public RegisterInDFBehaviour(Agent<? extends Agent> agent, String serviceType, String ownership) {
+    public RegisterInDFBehaviour(Agent agent, String serviceType, String ownership) {
         super(agent);
         this.serviceType = serviceType;
         this.ownership = ownership;

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7bdf68f-d0d5-427b-ac12-fe0e43bade84" name="Changes" comment="Jade has installed.">
-      <change afterPath="$PROJECT_DIR$/src/Restaurant/Agents/ControllerAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Restaurant/Agents/OrderAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Restaurant/Agents/VisitorAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Restaurant/Behaviors/RegisterInDFBehaviour.java" afterDir="false" />
+    <list default="true" id="e7bdf68f-d0d5-427b-ac12-fe0e43bade84" name="Changes" comment="Created empty files of Agents.">
+      <change afterPath="$PROJECT_DIR$/src/Restaurant/Items/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Restaurant/Items/Parcers/CreateMenuFromJSON.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input_data/menu_dishes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input_data/menu_dishes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Restaurant/Behaviors/OneShotBehaviour.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Restaurant/JsonFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Addons/JsonFileHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Restaurant/MyAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/ControllerAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/SupervisorAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/OrderAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/OrderAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/VisitorAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/VisitorAgent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +103,7 @@
       <option name="presentableId" value="Default" />
       <updated>1679613333461</updated>
       <workItem from="1679613335188" duration="1099000" />
-      <workItem from="1679615026666" duration="10308000" />
+      <workItem from="1679615026666" duration="13807000" />
     </task>
     <task id="LOCAL-00001" summary="Added class to work with Json files. Added gradle system.">
       <created>1679654322382</created>
@@ -127,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679656641508</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Created empty files of Agents.">
+      <created>1679663849726</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1679663849726</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +153,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added class to work with Json files. Added gradle system." />
     <MESSAGE value="Jade has installed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Jade has installed." />
+    <MESSAGE value="Created empty files of Agents." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created empty files of Agents." />
   </component>
 </project>
