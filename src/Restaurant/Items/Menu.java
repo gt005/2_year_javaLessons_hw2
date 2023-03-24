@@ -47,8 +47,19 @@ public class Menu implements Serializable {
         return items.get(index).menuDishActive;
     }
 
-    public void setMenuDishActivityById(int index, boolean menuDishActive) {
-        items.get(index).menuDishActive = menuDishActive;
+    /**
+     * Устанавливает активность блюда по его id. Если id не найден, то ничего не делает.
+     * @param id id блюда
+     * @param menuDishActive активность для показа блюда
+     */
+    public void setMenuDishActivityById(int id, boolean menuDishActive) {
+        System.out.println("setMenuDishActivityById " + id + " " + menuDishActive);
+        for (Item item : items) {
+            if (item.menuDishId == id) {
+                item.menuDishActive = menuDishActive;
+                return;
+            }
+        }
     }
 
     public boolean itemByIdExists(int menuDishId) {

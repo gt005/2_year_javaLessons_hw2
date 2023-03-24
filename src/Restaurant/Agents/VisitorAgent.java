@@ -11,6 +11,7 @@ import jade.lang.acl.MessageTemplate;
 import jade.domain.*;
 import jade.core.*;
 import jade.domain.FIPAAgentManagement.*;
+import jade.lang.acl.UnreadableException;
 
 /**
  * Агент посетителя ресторана. Может быть несколько экземпляров этого класса.
@@ -18,11 +19,7 @@ import jade.domain.FIPAAgentManagement.*;
  * Посетитель может отменить заказ.
  */
 public class VisitorAgent extends Agent {
-    private Menu menu;
-
-    void setMenu(Menu menu) {
-        this.menu = menu;
-    }
+    protected Menu menu;
 
     public VisitorAgent() {
         addBehaviour(new RegisterInDFBehaviour(this, "Visitor", "Supervisor"));
@@ -35,6 +32,14 @@ public class VisitorAgent extends Agent {
     }
 
     /**
+     * Устанавливает объект меню для класса.
+     * @param menu объект меню
+     */
+    protected void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
+    /**
      * Выводит в консоль меню. Требуется только для отладки программы.
      */
     public void outMenu() {
@@ -43,6 +48,27 @@ public class VisitorAgent extends Agent {
             if (menu.getMenuDishActive(i)) {
                 System.out.println("id " + menu.getMenuDishId(i));
             }
+        }
+    }
+
+    /**
+     * Задает видимость блюда с заданным строкой id.
+     * @param dishIdString строка с id блюда. Если строка не является числом, то ничего не произойдет.
+     * @param isActivity видимость блюда
+     */
+    protected void turnActivityMenuDishByIdString(String dishIdString, boolean isActivity) {
+        int dishId = -1;
+        try {
+            dishId = Integer.parseInt(dishIdString);
+        } catch (NumberFormatException e) {
+            System.out.println("Wrong dish id");
+        }
+
+        if (menu.itemByIdExists(dishId)) {
+            menu.setMenuDishActivityById(
+                    dishId,
+                    isActivity
+            );
         }
     }
 
@@ -78,39 +104,36 @@ public class VisitorAgent extends Agent {
             ACLMessage msg = ((VisitorAgent) myAgent).receive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
             if (msg != null) {
 
-                if ("add_dish_to_order_by_id".equals(msg.getContent())) {
+                if (msg.getContent().startsWith("add_dish_to_order_by_id")) {
                     // добавляем блюдо в заказ
                     System.out.println("dish added to order");
-                } else if ("remove_dish_from_order_by_id".equals(msg.getContent())) {
+                } else if (msg.getContent().startsWith("remove_dish_from_order_by_id")) {
                     // удаляем блюдо из заказа
                     System.out.println("dish removed from order");
                 } else if ("cancel_order".equals(msg.getContent())) {
                     // отменяем заказ
                     System.out.println("order canceled");
-                } else if ("turn_off_menu_dish_by_id".startsWith(msg.getContent())) {
-                    if (((VisitorAgent) myAgent).menu.itemByIdExists(Integer.parseInt(msg.getContent().split(" ")[1]))) {
-                        ((VisitorAgent) myAgent).menu.setMenuDishActivityById(
-                                Integer.parseInt(msg.getContent().split(" ")[1]),
-                                false
-                        );
+                } else if (msg.getContent().startsWith("turn_off_menu_dish_by_id")) {
+                    ((VisitorAgent) myAgent).turnActivityMenuDishByIdString(
+                            msg.getContent().split(" ")[1],
+                            false
+                    );
+                } else if (msg.getContent().startsWith("turn_on_menu_dish_by_id")) {
+                    ((VisitorAgent) myAgent).turnActivityMenuDishByIdString(
+                            msg.getContent().split(" ")[1],
+                            true
+                    );
+                } else if ("print_menu".equals(msg.getContent())) {
+                    ((VisitorAgent) myAgent).outMenu();
+                } else {
+                    try {
+                        if (msg.getContentObject() instanceof Menu) {
+                            Menu menu = (Menu) msg.getContentObject();
+                            ((VisitorAgent) myAgent).setMenu(menu);
+                        }
+                    } catch (UnreadableException ex) {
+                        System.out.println("Неизвестный запрос");
                     }
-                } else if ("turn_on_menu_dish_by_id".startsWith(msg.getContent())) {
-                    if (((VisitorAgent) myAgent).menu.itemByIdExists(Integer.parseInt(msg.getContent().split(" ")[1]))) {
-                        ((VisitorAgent) myAgent).menu.setMenuDishActivityById(
-                                Integer.parseInt(msg.getContent().split(" ")[1]),
-                                true
-                        );
-                    }
-                }
-                try {
-                    if (msg.getContentObject() instanceof Menu) {
-                        Menu menu = (Menu) msg.getContentObject();
-                        ((VisitorAgent) myAgent).setMenu(menu);
-                        ((VisitorAgent) myAgent).outMenu();
-                    }
-                } catch (Exception ex) {
-                    // Дада, я знаю, что так делать нельзя, но исключение UnreadableException не хочет импортироваться ниоткуда
-                    ex.printStackTrace();
                 }
             }
             else {
