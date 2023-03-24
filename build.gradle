@@ -4,6 +4,9 @@ plugins {
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://jade.tilab.com/maven/"
+    }
 }
 
 java {
@@ -13,6 +16,7 @@ java {
 
 dependencies {
     implementation 'org.json:json:20230227'
+    implementation files('jade/lib/jade.jar')
 }
 
 sourceSets {

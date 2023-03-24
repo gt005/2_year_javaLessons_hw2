@@ -1,26 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7bdf68f-d0d5-427b-ac12-fe0e43bade84" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input_data/cookers.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input_data/dish_cards.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input_data/equipment.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input_data/equipment_type.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input_data/menu_dishes.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input_data/operation_types.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input_data/product_types.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input_data/products.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kpo_IDZ_2year.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Restaurant/JsonFileHandler.java" afterDir="false" />
+    <list default="true" id="e7bdf68f-d0d5-427b-ac12-fe0e43bade84" name="Changes" comment="Added class to work with Json files. Added gradle system.">
+      <change afterPath="$PROJECT_DIR$/src/Restaurant/Behaviors/OneShotBehaviour.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Restaurant/MyAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,8 +99,16 @@
       <option name="presentableId" value="Default" />
       <updated>1679613333461</updated>
       <workItem from="1679613335188" duration="1099000" />
-      <workItem from="1679615026666" duration="3801000" />
+      <workItem from="1679615026666" duration="5877000" />
     </task>
+    <task id="LOCAL-00001" summary="Added class to work with Json files. Added gradle system.">
+      <created>1679654322382</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1679654322382</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,5 +124,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added class to work with Json files. Added gradle system." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added class to work with Json files. Added gradle system." />
   </component>
 </project>
