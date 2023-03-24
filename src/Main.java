@@ -34,21 +34,13 @@ public class Main {
         ContainerController container = runtime.createMainContainer(profile);
 
         AgentController supervisorController = null;
-        AgentController agentController = null;
 
         try {
-            supervisorController = container.acceptNewAgent("SupervisorAgent", SupervisorAgent.getInstance());
+            supervisorController = container.acceptNewAgent(
+                    "SupervisorAgent",
+                    SupervisorAgent.getInstance(5, container)
+            );
             supervisorController.start();
-
-
-            for (int i = 0; i < 3; i++) {
-                agentController = container.createNewAgent(
-                        "visitor " + i,
-                        "Restaurant.Agents.VisitorAgent",
-                        null
-                );
-                agentController.start();
-            }
         } catch (StaleProxyException e) {
             e.printStackTrace();
         }

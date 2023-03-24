@@ -11,6 +11,9 @@ import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import jade.domain.*;
+import jade.wrapper.ContainerController;
+import jade.wrapper.AgentController;
+import jade.wrapper.StaleProxyException;
 import jade.core.*;
 import jade.domain.FIPAAgentManagement.*;
 import java.io.IOException;
@@ -20,22 +23,26 @@ import java.io.IOException;
  */
 public class SupervisorAgent extends Agent {
     private static SupervisorAgent instance;
+    ContainerController jadeRuntimeContainer;
 
-    private SupervisorAgent() {
+    private SupervisorAgent(int visitorsAmount, ContainerController jadeRuntimeContainer) {
+        this.jadeRuntimeContainer = jadeRuntimeContainer;
+
         addBehaviour(new RegisterInDFBehaviour(this, "Supervisor", "Restaurant"));
-        addBehaviour(new createMenu());
+        addBehaviour(new CreateMenu());
         addBehaviour(new MessageReceiver());
         addBehaviour(new MenuRequestReceiver());
-//        addBehaviour(new createAllRequiredAgents());
+
+        createVisitors(visitorsAmount);
     }
 
     /**
      * Возвращает экземпляр класса. Если экземпляр класса не был создан, то он будет создан.
      * @return экземпляр класса
      */
-    public static synchronized SupervisorAgent getInstance() {
+    public static synchronized SupervisorAgent getInstance(int visitorsAmount, ContainerController jadeRuntimeContainer) {
         if (instance == null) {
-            instance = new SupervisorAgent();
+            instance = new SupervisorAgent(visitorsAmount, jadeRuntimeContainer);
         }
         return instance;
     }
@@ -114,7 +121,7 @@ public class SupervisorAgent extends Agent {
     /**
      * Загражает из файла и инициализирует объект меню.
      */
-    private static class createMenu extends OneShotBehaviour {
+    private static class CreateMenu extends OneShotBehaviour {
         public void action() {
             try {
                 CreateMenuFromJSON.create(
@@ -124,6 +131,26 @@ public class SupervisorAgent extends Agent {
                 );
             } catch (IOException ex) {
                 ex.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Создает агентов посетителей.
+     * @param visitorsAmount количество агентов посетителей.
+     */
+    void createVisitors(int visitorsAmount) {
+        for (int i = 0; i < visitorsAmount; i++) {
+            AgentController agentController = null;
+            try {
+                agentController = jadeRuntimeContainer.createNewAgent(
+                        "visitor " + i,
+                        "Restaurant.Agents.VisitorAgent",
+                        null
+                );
+                agentController.start();
+            } catch (StaleProxyException e) {
+                e.printStackTrace();
             }
         }
     }

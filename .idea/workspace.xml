@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7bdf68f-d0d5-427b-ac12-fe0e43bade84" name="Changes" comment="Для Visitor добавлены методы включения и выключения видимости блюда в меню по внешнему сообщению">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="e7bdf68f-d0d5-427b-ac12-fe0e43bade84" name="Changes" comment="Меню теперь загружается прямо при создании агента наблюдателя.">
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/OrderAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/OrderAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/SupervisorAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/SupervisorAgent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -152,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679699050401</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Меню теперь загружается прямо при создании агента наблюдателя.">
+      <created>1679699884821</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1679699884821</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +180,7 @@
     <MESSAGE value="Supervisor может отправлять сообщения всем visitor" />
     <MESSAGE value="Написан процесс запроса посетителем меню из управляющего агента, а также получение посетителем объекта меню (Menu)." />
     <MESSAGE value="Для Visitor добавлены методы включения и выключения видимости блюда в меню по внешнему сообщению" />
-    <option name="LAST_COMMIT_MESSAGE" value="Для Visitor добавлены методы включения и выключения видимости блюда в меню по внешнему сообщению" />
+    <MESSAGE value="Меню теперь загружается прямо при создании агента наблюдателя." />
+    <option name="LAST_COMMIT_MESSAGE" value="Меню теперь загружается прямо при создании агента наблюдателя." />
   </component>
 </project>
