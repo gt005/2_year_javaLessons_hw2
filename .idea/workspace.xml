@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7bdf68f-d0d5-427b-ac12-fe0e43bade84" name="Changes" comment="Created empty files of Agents.">
-      <change afterPath="$PROJECT_DIR$/src/Restaurant/Items/Menu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Restaurant/Items/Parcers/CreateMenuFromJSON.java" afterDir="false" />
+    <list default="true" id="e7bdf68f-d0d5-427b-ac12-fe0e43bade84" name="Changes" comment="Menu item and menu parcer from json done.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input_data/menu_dishes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input_data/menu_dishes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/ControllerAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/SupervisorAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/OrderAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/OrderAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/SupervisorAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/SupervisorAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/VisitorAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/VisitorAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Restaurant/Behaviors/RegisterInDFBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Behaviors/RegisterInDFBehaviour.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +23,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -37,17 +36,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "13",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.validation"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;13&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.validation&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Restaurant" />
