@@ -1,4 +1,4 @@
-package Restaurant;
+package Restaurant.Addons;
 
 import org.json.JSONObject;
 
