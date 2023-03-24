@@ -1,4 +1,7 @@
 import Restaurant.Addons.JsonFileHandler;
+import Restaurant.Agents.VisitorAgent;
+import Restaurant.Agents.SupervisorAgent;
+import Restaurant.Items.Parcers.CreateMenuFromJSON;
 
 import jade.core.Profile;
 import jade.core.ProfileImpl;
@@ -17,14 +20,13 @@ import jade.content.onto.OntologyException;
 import jade.core.AID;
 import jade.wrapper.StaleProxyException;
 
-import Restaurant.Agents.VisitorAgent;
-import Restaurant.Agents.SupervisorAgent;
-
 import java.io.IOException;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        // Загрузка меню из файла
+        CreateMenuFromJSON.create(JsonFileHandler.readJsonFromFile("/Users/karimhamid/IdeaProjects/kpo_IDZ_2year/input_data/menu_dishes.txt"));
         jade.core.Runtime runtime = jade.core.Runtime.instance();
 
         Profile profile = new ProfileImpl();
@@ -34,17 +36,14 @@ public class Main {
         ContainerController container = runtime.createMainContainer(profile);
 
         AgentController supervisorController = null;
-        try {
-            supervisorController = container.createNewAgent("SupervisorAgent", SupervisorAgent.class.getName(), null);
-            supervisorController.start();
-        } catch (StaleProxyException e) {
-            e.printStackTrace();
-        }
-
         AgentController agentController = null;
 
         try {
-            for (int i = 0; i < 5; i++) {
+            supervisorController = container.acceptNewAgent("SupervisorAgent", SupervisorAgent.getInstance());
+            supervisorController.start();
+
+
+            for (int i = 0; i < 3; i++) {
                 agentController = container.createNewAgent(
                         "visitor " + i,
                         "Restaurant.Agents.VisitorAgent",
@@ -52,14 +51,8 @@ public class Main {
                 );
                 agentController.start();
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (StaleProxyException e) {
+            e.printStackTrace();
         }
-
-        if (supervisorController == null && agentController == null) {
-            System.out.println("No agents were created");
-            return;
-        }
-
     }
 }

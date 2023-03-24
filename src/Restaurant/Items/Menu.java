@@ -1,12 +1,14 @@
 package Restaurant.Items;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Класс синглетон меню. Содержит список блюд
  */
-public class Menu {
+public class Menu implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static Menu instance;
     private final List<Item> items;
 
@@ -45,7 +47,21 @@ public class Menu {
         return items.get(index).menuDishActive;
     }
 
-    private static class Item {
+    public void setMenuDishActivityById(int index, boolean menuDishActive) {
+        items.get(index).menuDishActive = menuDishActive;
+    }
+
+    public boolean itemByIdExists(int menuDishId) {
+        for (Item item : items) {
+            if (item.menuDishId == menuDishId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static class Item implements Serializable {
+        private static final long serialVersionUID = 1L;
         public int menuDishId;
         public int menuDishCard;
         public int menuDishPrice;

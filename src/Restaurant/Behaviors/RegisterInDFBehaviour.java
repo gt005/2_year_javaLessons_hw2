@@ -11,14 +11,12 @@ public class RegisterInDFBehaviour extends OneShotBehaviour {
 
     public RegisterInDFBehaviour(Agent agent, String serviceType, String ownership) {
         super(agent);
-        System.out.println("RegisterInDFBehaviour");
         this.serviceType = serviceType;
         this.ownership = ownership;
     }
 
     @Override
     public void action() {
-        System.out.println("RegisterInDFBehaviour.action");
         ServiceDescription sd = new ServiceDescription();
         sd.setType(serviceType);
         sd.setOwnership(ownership);

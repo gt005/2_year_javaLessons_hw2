@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7bdf68f-d0d5-427b-ac12-fe0e43bade84" name="Changes" comment="Menu item and menu parcer from json done.">
+    <list default="true" id="e7bdf68f-d0d5-427b-ac12-fe0e43bade84" name="Changes" comment="Supervisor может отправлять сообщения всем visitor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APDescription.txt" beforeDir="false" afterPath="$PROJECT_DIR$/APDescription.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/SupervisorAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/SupervisorAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/VisitorAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/VisitorAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Restaurant/Behaviors/RegisterInDFBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Behaviors/RegisterInDFBehaviour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Restaurant/Items/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Items/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679663849726</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Supervisor может отправлять сообщения всем visitor">
+      <created>1679680312345</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1679680312345</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +161,7 @@
     <MESSAGE value="Added class to work with Json files. Added gradle system." />
     <MESSAGE value="Jade has installed." />
     <MESSAGE value="Created empty files of Agents." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created empty files of Agents." />
+    <MESSAGE value="Supervisor может отправлять сообщения всем visitor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Supervisor может отправлять сообщения всем visitor" />
   </component>
 </project>
