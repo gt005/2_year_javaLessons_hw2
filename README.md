@@ -16,3 +16,6 @@ java {
 gradle build
 java -jar build/libs/java_IDZ_2_year
 ```
+
+### Описание
+Список блюд в меню находится в файле input_data/menu_dishes.txt

@@ -1,10 +1,13 @@
 package Restaurant.Agents;
 
+import Restaurant.Addons.JsonFileHandler;
 import Restaurant.Behaviors.RegisterInDFBehaviour;
 import Restaurant.Items.Menu;
 
+import Restaurant.Items.Parcers.CreateMenuFromJSON;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
+import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import jade.domain.*;
@@ -20,10 +23,16 @@ public class SupervisorAgent extends Agent {
 
     private SupervisorAgent() {
         addBehaviour(new RegisterInDFBehaviour(this, "Supervisor", "Restaurant"));
+        addBehaviour(new createMenu());
         addBehaviour(new MessageReceiver());
         addBehaviour(new MenuRequestReceiver());
+//        addBehaviour(new createAllRequiredAgents());
     }
 
+    /**
+     * Возвращает экземпляр класса. Если экземпляр класса не был создан, то он будет создан.
+     * @return экземпляр класса
+     */
     public static synchronized SupervisorAgent getInstance() {
         if (instance == null) {
             instance = new SupervisorAgent();
@@ -35,6 +44,9 @@ public class SupervisorAgent extends Agent {
         System.out.println("Supervisor agent " + getAID().getName() + " is ready.");
     }
 
+    /**
+     * Поведение, которое обрабатывает запросы меню и выдает заданное при запуске программы меню.
+     */
     private class MenuRequestReceiver extends CyclicBehaviour {
         public void action() {
             // ожидаем сообщение
@@ -62,6 +74,9 @@ public class SupervisorAgent extends Agent {
         }
     }
 
+    /**
+     * Отвечает за получение и обработку сообщений. Распределяет сообщения по типам и выполняет нужные методы.
+     */
     private class MessageReceiver extends CyclicBehaviour {
         public void action() {
             // ожидаем сообщение
@@ -92,6 +107,23 @@ public class SupervisorAgent extends Agent {
             else {
                 // если сообщения нет, то поведение блокируется на команде receive
                 block();
+            }
+        }
+    }
+
+    /**
+     * Загражает из файла и инициализирует объект меню.
+     */
+    private static class createMenu extends OneShotBehaviour {
+        public void action() {
+            try {
+                CreateMenuFromJSON.create(
+                        JsonFileHandler.readJsonFromFile(
+                                "input_data/menu_dishes.txt"
+                        )
+                );
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
         }
     }

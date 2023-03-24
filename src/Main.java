@@ -25,8 +25,6 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        // Загрузка меню из файла
-        CreateMenuFromJSON.create(JsonFileHandler.readJsonFromFile("/Users/karimhamid/IdeaProjects/kpo_IDZ_2year/input_data/menu_dishes.txt"));
         jade.core.Runtime runtime = jade.core.Runtime.instance();
 
         Profile profile = new ProfileImpl();
