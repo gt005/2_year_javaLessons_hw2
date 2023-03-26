@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7bdf68f-d0d5-427b-ac12-fe0e43bade84" name="Changes" comment="Меню теперь загружается прямо при создании агента наблюдателя.">
+    <list default="true" id="e7bdf68f-d0d5-427b-ac12-fe0e43bade84" name="Changes" comment="Теперь агенты посетители запускаются агентом наблюдателем.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APDescription.txt" beforeDir="false" afterPath="$PROJECT_DIR$/APDescription.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MTPs-Main-Container.txt" beforeDir="false" afterPath="$PROJECT_DIR$/MTPs-Main-Container.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/DishAndDrinkAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/DishAndDrinkAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/OrderAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/OrderAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/SupervisorAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/SupervisorAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/VisitorAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/VisitorAgent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +45,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;13&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/karimhamid/IdeaProjects/kpo_IDZ_2year&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.validation&quot;
   }
@@ -99,6 +106,9 @@
       <updated>1679613333461</updated>
       <workItem from="1679613335188" duration="1099000" />
       <workItem from="1679615026666" duration="13807000" />
+      <workItem from="1679836407833" duration="1419000" />
+      <workItem from="1679845549021" duration="717000" />
+      <workItem from="1679846752723" duration="1131000" />
     </task>
     <task id="LOCAL-00001" summary="Added class to work with Json files. Added gradle system.">
       <created>1679654322382</created>
@@ -156,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679699884821</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Теперь агенты посетители запускаются агентом наблюдателем.">
+      <created>1679700724350</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1679700724350</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +198,7 @@
     <MESSAGE value="Написан процесс запроса посетителем меню из управляющего агента, а также получение посетителем объекта меню (Menu)." />
     <MESSAGE value="Для Visitor добавлены методы включения и выключения видимости блюда в меню по внешнему сообщению" />
     <MESSAGE value="Меню теперь загружается прямо при создании агента наблюдателя." />
-    <option name="LAST_COMMIT_MESSAGE" value="Меню теперь загружается прямо при создании агента наблюдателя." />
+    <MESSAGE value="Теперь агенты посетители запускаются агентом наблюдателем." />
+    <option name="LAST_COMMIT_MESSAGE" value="Теперь агенты посетители запускаются агентом наблюдателем." />
   </component>
 </project>

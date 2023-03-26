@@ -1,10 +1,14 @@
 package Restaurant.Agents;
 
-import Restaurant.Addons.JsonFileHandler;
-import Restaurant.Behaviors.RegisterInDFBehaviour;
-import Restaurant.Items.Menu;
+import Restaurant.Agents.OrderAgent;
 
+import Restaurant.Addons.JsonFileHandler;
+
+import Restaurant.Behaviors.RegisterInDFBehaviour;
+
+import Restaurant.Items.Menu;
 import Restaurant.Items.Parcers.CreateMenuFromJSON;
+
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
@@ -30,8 +34,8 @@ public class SupervisorAgent extends Agent {
 
         addBehaviour(new RegisterInDFBehaviour(this, "Supervisor", "Restaurant"));
         addBehaviour(new CreateMenu());
-        addBehaviour(new MessageReceiver());
-        addBehaviour(new MenuRequestReceiver());
+        addBehaviour(new InformMessageReceiver());
+        addBehaviour(new RequestMessageReceiver());
 
         createVisitors(visitorsAmount);
     }
@@ -46,33 +50,34 @@ public class SupervisorAgent extends Agent {
         }
         return instance;
     }
-
+    @Override
     protected void setup() {
         System.out.println("Supervisor agent " + getAID().getName() + " is ready.");
     }
 
     /**
-     * Поведение, которое обрабатывает запросы меню и выдает заданное при запуске программы меню.
+     * Поведение, которое обрабатывает request сообщения.
      */
-    private class MenuRequestReceiver extends CyclicBehaviour {
+    private class RequestMessageReceiver extends CyclicBehaviour {
         public void action() {
             // ожидаем сообщение
             ACLMessage msg = receive(MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
             if (msg != null) {
                 String response = msg.getContent();
+                ACLMessage message = new ACLMessage(ACLMessage.INFORM);
+                message.addReceiver(msg.getSender());
 
-                System.out.println("\n------------------\nSupervisor get\t" + response + " \n--------------------\n");
-
-                if ("send_menu".equals(response)) {
-                    try {
-                        ACLMessage message = new ACLMessage(ACLMessage.INFORM);
+                try {
+                    if ("send_menu".equals(response)) {
                         message.setContentObject(Menu.getInstance());
-                        message.addReceiver(msg.getSender());
-                        send(message);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
+                    } else if ("create_order_agent".equals(response)) {
+                        message.setContentObject(new OrderAgent());
                     }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
+
+                send(message);
             }
             else {
                 // если сообщения нет, то поведение блокируется на команде receive
@@ -84,7 +89,7 @@ public class SupervisorAgent extends Agent {
     /**
      * Отвечает за получение и обработку сообщений. Распределяет сообщения по типам и выполняет нужные методы.
      */
-    private class MessageReceiver extends CyclicBehaviour {
+    private class InformMessageReceiver extends CyclicBehaviour {
         public void action() {
             // ожидаем сообщение
             ACLMessage msg = receive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));

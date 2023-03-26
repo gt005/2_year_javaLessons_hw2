@@ -23,6 +23,7 @@ import jade.wrapper.StaleProxyException;
 import java.io.IOException;
 
 public class Main {
+    static final int VISITORS_AMOUNT = 5;
 
     public static void main(String[] args) throws IOException {
         jade.core.Runtime runtime = jade.core.Runtime.instance();
@@ -38,7 +39,10 @@ public class Main {
         try {
             supervisorController = container.acceptNewAgent(
                     "SupervisorAgent",
-                    SupervisorAgent.getInstance(5, container)
+                    SupervisorAgent.getInstance(
+                            VISITORS_AMOUNT,
+                            container
+                    )
             );
             supervisorController.start();
         } catch (StaleProxyException e) {

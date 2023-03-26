@@ -1,5 +1,7 @@
 package Restaurant.Agents;
 
+import Restaurant.Agents.OrderAgent;
+
 import Restaurant.Behaviors.RegisterInDFBehaviour;
 import Restaurant.Items.Menu;
 
@@ -12,6 +14,7 @@ import jade.domain.*;
 import jade.core.*;
 import jade.domain.FIPAAgentManagement.*;
 import jade.lang.acl.UnreadableException;
+import org.w3c.dom.ls.LSOutput;
 
 /**
  * Агент посетителя ресторана. Может быть несколько экземпляров этого класса.
@@ -19,14 +22,17 @@ import jade.lang.acl.UnreadableException;
  * Посетитель может отменить заказ.
  */
 public class VisitorAgent extends Agent {
-    protected Menu menu;
+    private Menu menu;
+    private OrderAgent orderAgent;
 
     public VisitorAgent() {
         addBehaviour(new RegisterInDFBehaviour(this, "Visitor", "Supervisor"));
-        addBehaviour(new MessageReceiver());
-        addBehaviour(new RequestMenu());
+        addBehaviour(new InformMessageReceiver());
+        addBehaviour(new RequestSupervisor("send_menu"));
+        addBehaviour(new RequestSupervisor("create_order_agent"));
     }
 
+    @Override
     protected void setup() {
         System.out.println("Visitor agent " + getAID().getName() + " is ready.");
     }
@@ -37,6 +43,14 @@ public class VisitorAgent extends Agent {
      */
     protected void setMenu(Menu menu) {
         this.menu = menu;
+    }
+
+    /**
+     * Устанавливает объект заказа для класса.
+     * @param orderAgent объект заказа
+     */
+    protected void setOrderAgent(OrderAgent orderAgent) {
+        this.orderAgent = orderAgent;
     }
 
     /**
@@ -73,10 +87,16 @@ public class VisitorAgent extends Agent {
     }
 
     /**
-     * Запросит у управляющего агента меню. Меню будет получено и установлено в поле класса menu.
+     * Создает request сообщение для агента-управляющего и отправляет его.
      */
-    private class RequestMenu extends OneShotBehaviour {
+    private class RequestSupervisor extends OneShotBehaviour {
         // Не static так как отправляет сообщение
+
+        String messageToSend;
+        public RequestSupervisor(String message) {
+            this.messageToSend = message;
+        }
+
         public void action() {
             // Поиск синглетона агента-управляющего
             DFAgentDescription dfd = new DFAgentDescription();
@@ -88,7 +108,7 @@ public class VisitorAgent extends Agent {
                 DFAgentDescription[] supervisor = DFService.search(myAgent, dfd);
                 ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
                 msg.addReceiver(supervisor[0].getName());
-                msg.setContent("send_menu"); // добавляем контент сообщения, в данном случае запрос на получение меню
+                msg.setContent(messageToSend);
                 send(msg);
             } catch (FIPAException ex) {
                 ex.printStackTrace();
@@ -96,40 +116,49 @@ public class VisitorAgent extends Agent {
         }
     }
 
+
     /**
      * Отвечает за получение и обработку сообщений. Распределяет сообщения по типам и выполняет нужные методы.
      */
-    private static class MessageReceiver extends CyclicBehaviour {
+    private static class InformMessageReceiver extends CyclicBehaviour {
         public void action() {
             ACLMessage msg = ((VisitorAgent) myAgent).receive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
             if (msg != null) {
 
                 if (msg.getContent().startsWith("add_dish_to_order_by_id")) {
-                    // добавляем блюдо в заказ
+                    // TODO: добавляем блюдо в заказ
                     System.out.println("dish added to order");
                 } else if (msg.getContent().startsWith("remove_dish_from_order_by_id")) {
-                    // удаляем блюдо из заказа
+                    // TODO: удаляем блюдо из заказа
                     System.out.println("dish removed from order");
                 } else if ("cancel_order".equals(msg.getContent())) {
-                    // отменяем заказ
+                    // TODO: отменяем заказ
                     System.out.println("order canceled");
                 } else if (msg.getContent().startsWith("turn_off_menu_dish_by_id")) {
+                    // Делаем блюдо неактивным
                     ((VisitorAgent) myAgent).turnActivityMenuDishByIdString(
                             msg.getContent().split(" ")[1],
                             false
                     );
                 } else if (msg.getContent().startsWith("turn_on_menu_dish_by_id")) {
+                    // Делаем блюдо активным
                     ((VisitorAgent) myAgent).turnActivityMenuDishByIdString(
                             msg.getContent().split(" ")[1],
                             true
                     );
                 } else if ("print_menu".equals(msg.getContent())) {
+                    // Выводим меню в консоль
                     ((VisitorAgent) myAgent).outMenu();
                 } else {
+                    // Если получаем объект в сообщении, то обрабатываем его
                     try {
                         if (msg.getContentObject() instanceof Menu) {
                             Menu menu = (Menu) msg.getContentObject();
                             ((VisitorAgent) myAgent).setMenu(menu);
+                        } else if (msg.getContentObject() instanceof OrderAgent) {
+                            OrderAgent orderAgent = (OrderAgent) msg.getContentObject();
+                            ((VisitorAgent) myAgent).setOrderAgent(orderAgent);
+                            System.out.println("Длина агента заказа " + ((VisitorAgent) myAgent).orderAgent.dishesAndDrinkListLength());
                         }
                     } catch (UnreadableException ex) {
                         System.out.println("Неизвестный запрос");
