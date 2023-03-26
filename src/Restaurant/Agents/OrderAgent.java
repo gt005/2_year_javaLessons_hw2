@@ -3,6 +3,8 @@ package Restaurant.Agents;
 import Restaurant.Agents.DishAndDrinkAgent;
 
 import Restaurant.Behaviors.RegisterInDFBehaviour;
+
+import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.MessageTemplate;
@@ -35,6 +37,10 @@ public class OrderAgent extends Agent {
      */
     public DishAndDrinkAgent getDishAndDrinkByIndex(int index) {
         return dishesAndDrinks.get(index);
+    }
+
+    public AID getOrderAgentAID() {
+        return getAID();
     }
 
     @Override

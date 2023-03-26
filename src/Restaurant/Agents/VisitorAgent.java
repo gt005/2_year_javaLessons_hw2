@@ -23,12 +23,12 @@ import org.w3c.dom.ls.LSOutput;
  */
 public class VisitorAgent extends Agent {
     private Menu menu;
-    private OrderAgent orderAgent;
+    private AID orderAgentId;
 
     public VisitorAgent() {
         addBehaviour(new RegisterInDFBehaviour(this, "Visitor", "Supervisor"));
         addBehaviour(new InformMessageReceiver());
-        addBehaviour(new RequestSupervisor("send_menu"));
+//        addBehaviour(new RequestSupervisor("send_menu"));
         addBehaviour(new RequestSupervisor("create_order_agent"));
     }
 
@@ -49,8 +49,8 @@ public class VisitorAgent extends Agent {
      * Устанавливает объект заказа для класса.
      * @param orderAgent объект заказа
      */
-    protected void setOrderAgent(OrderAgent orderAgent) {
-        this.orderAgent = orderAgent;
+    protected void setOrderAgent(AID orderAgentId) {
+        this.orderAgentId = orderAgentId;
     }
 
     /**
@@ -152,13 +152,15 @@ public class VisitorAgent extends Agent {
                 } else {
                     // Если получаем объект в сообщении, то обрабатываем его
                     try {
+                        System.out.println(msg.getContentObject() == null);
                         if (msg.getContentObject() instanceof Menu) {
                             Menu menu = (Menu) msg.getContentObject();
                             ((VisitorAgent) myAgent).setMenu(menu);
-                        } else if (msg.getContentObject() instanceof OrderAgent) {
-                            OrderAgent orderAgent = (OrderAgent) msg.getContentObject();
-                            ((VisitorAgent) myAgent).setOrderAgent(orderAgent);
-                            System.out.println("Длина агента заказа " + ((VisitorAgent) myAgent).orderAgent.dishesAndDrinkListLength());
+                        } else if (msg.getContentObject() instanceof jade.core.AID) {
+                            System.out.println("Получен aid");
+                            jade.core.AID orderAgentId = (jade.core.AID) msg.getContentObject();
+                            ((VisitorAgent) myAgent).setOrderAgent(orderAgentId);
+                            System.out.println("Агент заказа aid " + orderAgentId);
                         }
                     } catch (UnreadableException ex) {
                         System.out.println("Неизвестный запрос");

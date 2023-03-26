@@ -20,7 +20,10 @@ import jade.wrapper.AgentController;
 import jade.wrapper.StaleProxyException;
 import jade.core.*;
 import jade.domain.FIPAAgentManagement.*;
+
 import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.RecursiveTask;
 
 /**
  * Класс управляющего агента. Может быть только один экземпляр этого класса.
@@ -28,6 +31,8 @@ import java.io.IOException;
 public class SupervisorAgent extends Agent {
     private static SupervisorAgent instance;
     ContainerController jadeRuntimeContainer;
+
+    private int ordersAmount = 0;
 
     private SupervisorAgent(int visitorsAmount, ContainerController jadeRuntimeContainer) {
         this.jadeRuntimeContainer = jadeRuntimeContainer;
@@ -42,6 +47,7 @@ public class SupervisorAgent extends Agent {
 
     /**
      * Возвращает экземпляр класса. Если экземпляр класса не был создан, то он будет создан.
+     *
      * @return экземпляр класса
      */
     public static synchronized SupervisorAgent getInstance(int visitorsAmount, ContainerController jadeRuntimeContainer) {
@@ -50,10 +56,11 @@ public class SupervisorAgent extends Agent {
         }
         return instance;
     }
-    @Override
-    protected void setup() {
-        System.out.println("Supervisor agent " + getAID().getName() + " is ready.");
-    }
+
+//    @Override
+//    protected void setup() {
+//        System.out.println("Supervisor agent " + getAID().getName() + " is ready.");
+//    }
 
     /**
      * Поведение, которое обрабатывает request сообщения.
@@ -71,15 +78,18 @@ public class SupervisorAgent extends Agent {
                     if ("send_menu".equals(response)) {
                         message.setContentObject(Menu.getInstance());
                     } else if ("create_order_agent".equals(response)) {
-                        message.setContentObject(new OrderAgent());
+                        AID orderAgentAID = createAgentByName("OrderAgent", "order " + ordersAmount);
+                        if (orderAgentAID != null) {
+                            message.setContentObject(orderAgentAID);
+                            ordersAmount++;
+                        }
                     }
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
 
                 send(message);
-            }
-            else {
+            } else {
                 // если сообщения нет, то поведение блокируется на команде receive
                 block();
             }
@@ -115,8 +125,7 @@ public class SupervisorAgent extends Agent {
                 } catch (FIPAException ex) {
                     ex.printStackTrace();
                 }
-            }
-            else {
+            } else {
                 // если сообщения нет, то поведение блокируется на команде receive
                 block();
             }
@@ -142,22 +151,49 @@ public class SupervisorAgent extends Agent {
 
     /**
      * Создает агентов посетителей.
+     *
      * @param visitorsAmount количество агентов посетителей.
      */
-    void createVisitors(int visitorsAmount) {
+    private void createVisitors(int visitorsAmount) {
         for (int i = 0; i < visitorsAmount; i++) {
-            AgentController agentController = null;
-            try {
-                agentController = jadeRuntimeContainer.createNewAgent(
-                        "visitor " + i,
-                        "Restaurant.Agents.VisitorAgent",
-                        null
-                );
-                agentController.start();
-            } catch (StaleProxyException e) {
-                e.printStackTrace();
-            }
+            createAgentByName("VisitorAgent", "visitor " + i);
         }
+    }
+
+    /**
+     * Создает агента по имени
+     */
+    private AID createAgentByName(String nameOfTypeOfAgent, String nameOfAgent) {
+        final List<String> namesOfAgents = List.of(
+                "VisitorAgent",
+                "OrderAgent"
+        );
+
+        if (!namesOfAgents.contains(nameOfTypeOfAgent)) {
+            System.out.println("Agent with name " + nameOfAgent + " not found");
+            return null;
+        }
+
+        AgentController agentController = null;
+        AID agentAID = null;
+        try {
+            agentController = jadeRuntimeContainer.createNewAgent(
+                    nameOfAgent,
+                    "Restaurant.Agents." + nameOfTypeOfAgent,
+                    null
+            );
+            agentController.start();
+
+            // Получаем AID агента
+            String agentName = agentController.getName();
+            agentAID = new AID(agentName, AID.ISGUID);
+            agentAID.setName(agentName);
+        } catch (StaleProxyException e) {
+            e.printStackTrace();
+        }
+
+
+        return agentAID;
     }
 
     protected void takeDown() {

@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7bdf68f-d0d5-427b-ac12-fe0e43bade84" name="Changes" comment="Теперь агенты посетители запускаются агентом наблюдателем.">
+    <list default="true" id="e7bdf68f-d0d5-427b-ac12-fe0e43bade84" name="Changes" comment="Создан пустой агент Заказа и пустой агент Еды/Напитка. Создано создание и передача агента заказа агенту посетителю.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APDescription.txt" beforeDir="false" afterPath="$PROJECT_DIR$/APDescription.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MTPs-Main-Container.txt" beforeDir="false" afterPath="$PROJECT_DIR$/MTPs-Main-Container.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/DishAndDrinkAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/DishAndDrinkAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/OrderAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/OrderAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/SupervisorAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/SupervisorAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Restaurant/Agents/VisitorAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Restaurant/Agents/VisitorAgent.java" afterDir="false" />
@@ -108,7 +104,7 @@
       <workItem from="1679615026666" duration="13807000" />
       <workItem from="1679836407833" duration="1419000" />
       <workItem from="1679845549021" duration="717000" />
-      <workItem from="1679846752723" duration="1131000" />
+      <workItem from="1679846752723" duration="4309000" />
     </task>
     <task id="LOCAL-00001" summary="Added class to work with Json files. Added gradle system.">
       <created>1679654322382</created>
@@ -173,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679700724350</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Создан пустой агент Заказа и пустой агент Еды/Напитка. Создано создание и передача агента заказа агенту посетителю.">
+      <created>1679847964867</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1679847964867</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,6 +194,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="Added class to work with Json files. Added gradle system." />
     <MESSAGE value="Jade has installed." />
     <MESSAGE value="Created empty files of Agents." />
@@ -199,6 +203,7 @@
     <MESSAGE value="Для Visitor добавлены методы включения и выключения видимости блюда в меню по внешнему сообщению" />
     <MESSAGE value="Меню теперь загружается прямо при создании агента наблюдателя." />
     <MESSAGE value="Теперь агенты посетители запускаются агентом наблюдателем." />
-    <option name="LAST_COMMIT_MESSAGE" value="Теперь агенты посетители запускаются агентом наблюдателем." />
+    <MESSAGE value="Создан пустой агент Заказа и пустой агент Еды/Напитка. Создано создание и передача агента заказа агенту посетителю." />
+    <option name="LAST_COMMIT_MESSAGE" value="Создан пустой агент Заказа и пустой агент Еды/Напитка. Создано создание и передача агента заказа агенту посетителю." />
   </component>
 </project>
